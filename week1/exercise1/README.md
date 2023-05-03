@@ -1,6 +1,5 @@
 Curriculum Vite
 
-
 Comandos más utilizados en la terminal
 
 | Comando | Descripción                                      |
@@ -10,7 +9,6 @@ Comandos más utilizados en la terminal
 | cd      | Cambiar de directorio                            |
 | mkdir   | Crea un directorio                               |
 | cat     | Crea, fusionao o imprime archivos en la pantalla |
-
 
 Estos son mis alias mas utilizados
 
