@@ -1,0 +1,15 @@
+{
+  "name": "introExpress",
+  "version": "1.0.0",
+  "main": "node-server.js",
+  "type": "module",
+  "author": "Oscar Terceros",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
