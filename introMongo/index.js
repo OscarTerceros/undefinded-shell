@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { getAll } from './mongo.js';
 
 dotenv.config();
 
@@ -28,7 +29,8 @@ let posts = [
         reactions: 2
     }];
 
-app.get( '/posts', ( req, res ) => {
+app.get( '/posts', async ( req, res ) => {
+    const posts = await getAll('theaters');
     res.send({ posts });
 });
 

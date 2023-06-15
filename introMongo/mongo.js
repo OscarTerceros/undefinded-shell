@@ -1,10 +1,10 @@
 import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 
-dotenv.config();
-
-const { MONGO_USER, MONGO_PASSWORD, MONGO_HOSTNAME } = process.env;
 const { MongoClient, ServerApiVersion } = mongodb;
+
+dotenv.config();
+const { MONGO_USER, MONGO_PASSWORD, MONGO_HOSTNAME } = process.env;
 
 const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/?retryWrites=true&w=majority`;
 
@@ -17,7 +17,27 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function run() {
+const getDB = async () => {
+  try{
+    await client.connect();
+    return client.db('sample_mflix');;
+  } catch(error) {
+    console.log( "Coudn't connect to the db", { cause: error });
+  }
+}
+
+export const getAll = async (collectionName, query) => {
+  try {
+    const database = await getDB();
+    return await database.collection(collectionName).find(query).limit(5).toArray();
+  }catch( error ) {
+    console.log( `Coudn't get all ${collectionName} whith query ${query}`, { cause: error });
+  } finally {
+    await client.close();
+  }
+}
+
+/* async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
@@ -30,4 +50,4 @@ async function run() {
   }
 }
 
-run().catch(console.dir);
+run().catch(console.dir); */
