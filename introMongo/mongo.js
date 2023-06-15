@@ -1,11 +1,11 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const { MONGO_USER, MONGO_PASSWORD, MONGO_HOSTNAME } = process.env;
+const { MongoClient, ServerApiVersion } = mongodb;
 
-//const { MongoClient, ServerApiVersion } = mongodb;
 const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -29,4 +29,5 @@ async function run() {
     await client.close();
   }
 }
+
 run().catch(console.dir);
