@@ -1,5 +1,5 @@
-import { express } from 'express';
-import { postModel } from './model';
+import express from 'express';
+import { postModel } from './model.js';
 
 export const postRouter = express.Router();
 
@@ -15,10 +15,13 @@ postRouter.post('/', async (req, res) => {
 postRouter.get('/', async (req, res) => {});
 
 //read
-postRouter.get('/:id', async (req, res) => {});
+postRouter.get('/:permalink', async (req, res) => {
+    const post = await postModel.findOne( { permalink: req.params.permalink });
+    res.status(200).json({ post });
+});
 
 //update
-postRouter.patch ('/:id', async (req, res) => {});
+postRouter.patch ('/:permalink', async (req, res) => {});
 
 //delete
-postRouter.delete('/:id', async (req, res) => {});
+postRouter.delete('/:permalink', async (req, res) => {});
